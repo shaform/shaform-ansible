@@ -27,10 +27,13 @@
             Defaults umask = 0002
 
 -   apt:
+        upgrade: dist
+        update_cache: yes
+
+-   apt:
         name: '{{ item.name }}'
         state: '{{ item.state | default("present") }}'
         purge: yes
-        update_cache: yes
 
     with_items:
         -   name: apt-transport-https
@@ -38,6 +41,7 @@
         -   name: fonts-noto-cjk
         -   name: git-core
         -   name: gufw
+        -   name: htop
         -   name: p7zip-full
         -   name: p7zip-rar
         -   name: screen
