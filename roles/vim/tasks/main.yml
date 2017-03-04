@@ -1,0 +1,11 @@
+---
+
+-   apt:
+        name: '{{ item.name }}'
+        state: '{{ item.state | default("present") }}'
+        update_cache: yes
+
+    with_items:
+        -   name: build-essential
+        -   name: cmake
+        -   name: python3-dev

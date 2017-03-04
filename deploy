@@ -1,0 +1,4 @@
+#!/bin/sh
+HOST=${1:-localhost}
+YML=${2:-host.yml}
+ansible-playbook --ask-become-pass --extra-vars="hosts=$HOST" $YML
