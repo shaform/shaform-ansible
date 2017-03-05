@@ -1,0 +1,10 @@
+---
+
+-   get_url:
+        url: 'https://repo.continuum.io/archive/Anaconda2-4.3.0-Linux-x86_64.sh'
+        dest: /tmp/Anaconda2-4.3.0-Linux-x86_64.sh
+        mode: '0755'
+
+-   command: bash /tmp/Anaconda2-4.3.0-Linux-x86_64.sh -b -p {{ ansible_env.HOME}}/anaconda2
+    args:
+        creates: '{{ ansible_env.HOME}}/anaconda2'

@@ -1,0 +1,6 @@
+---
+-   hosts: '{{ hosts }}'
+    become: true
+    become_user: root
+    roles:
+        -   cuda
