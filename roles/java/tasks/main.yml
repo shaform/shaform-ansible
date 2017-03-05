@@ -1,34 +1,39 @@
 ---
 
--   apt_repository:
-        repo: 'ppa:webupd8team/java'
+- name: add Java ppa
+  apt_repository:
+    repo: 'ppa:webupd8team/java'
 
--   apt:
-        name: '{{ item.name }}'
-        state: '{{ item.state | default("present") }}'
-        update_cache: yes
+- name: install debconf
+  apt:
+    name: '{{ item.name }}'
+    state: '{{ item.state | default("present") }}'
+    update_cache: yes
 
-    with_items:
-        -   name: debconf-utils
+  with_items:
+    - name: debconf-utils
 
--   debconf:
-        name: oracle-java9-installer
-        question: shared/accepted-oracle-license-v1-1
-        vtype: select
-        value: true
+- name: accept license
+  debconf:
+    name: oracle-java9-installer
+    question: shared/accepted-oracle-license-v1-1
+    vtype: select
+    value: true
 
--   debconf:
-        name: oracle-java9-installer
-        question: shared/accepted-oracle-license-v1-1
-        vtype: seen
-        value: true
+- name: mark license as seen
+  debconf:
+    name: oracle-java9-installer
+    question: shared/accepted-oracle-license-v1-1
+    vtype: seen
+    value: true
 
--   apt:
-        name: '{{ item.name }}'
-        state: '{{ item.state | default("present") }}'
+- name: install Java
+  apt:
+    name: '{{ item.name }}'
+    state: '{{ item.state | default("present") }}'
 
-    with_items:
-        -   name: python-software-properties
-        -   name: oracle-java9-installer
-        -   name: ca-certificates
-        -   name: oracle-java9-set-default
+  with_items:
+    - name: python-software-properties
+    - name: oracle-java9-installer
+    - name: ca-certificates
+    - name: oracle-java9-set-default

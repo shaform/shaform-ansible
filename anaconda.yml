@@ -1,7 +1,5 @@
 ---
 
--   hosts: '{{ hosts }}'
-    become: true
-    become_user: shaform
-    roles:
-        -   anaconda
+- hosts: '{{ hosts }}'
+  roles:
+    - anaconda

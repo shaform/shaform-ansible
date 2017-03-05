@@ -1,9 +1,10 @@
 ---
--   hosts: '{{ hosts }}'
-    become: true
-    become_user: root
-    roles:
-        -   base
-        -   java
-        -   desktop
-        -   vim
+
+- hosts: '{{ hosts }}'
+  become: true
+  become_user: root
+  roles:
+    - base
+    - java
+    - desktop
+    - vim
