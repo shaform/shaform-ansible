@@ -1,5 +1,8 @@
 ---
 
+- name: add nvim ppa
+  apt_repository: repo='ppa:neovim-ppa/stable' state=present
+
 - name: install related packages
   apt:
     name: '{{ item.name }}'
@@ -10,3 +13,4 @@
     - name: build-essential
     - name: cmake
     - name: python3-dev
+    - name: neovim
