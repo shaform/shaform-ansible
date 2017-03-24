@@ -36,13 +36,15 @@
     update_cache: yes
 
   with_items:
+    - name: chromium-browser
     - name: gimp
+    - name: gnucash
     - name: ibus-chewing
     - name: keepassx
-    - name: workrave
     - name: libappindicator1 # For Dropbox
-    - name: python-gpgme # For Dropbox
     - name: nautilus-dropbox
+    - name: python-gpgme # For Dropbox
+    - name: workrave
 
 - name: install Google Chrome
   apt:
