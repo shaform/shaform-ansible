@@ -1,0 +1,48 @@
+---
+- name: download pass
+  get_url:
+    url: 'https://git.zx2c4.com/password-store/snapshot/password-store-1.7.1.tar.xz'
+    dest: /tmp/password-store-1.7.1.tar.xz
+    checksum: 'sha256:f6d2199593398aaefeaa55e21daddfb7f1073e9e096af6d887126141e99d9869'
+
+- name: unarchive
+  unarchive:
+    src: /tmp/password-store-1.7.1.tar.xz
+    dest: /tmp
+
+- name: install pass
+  make:
+    chdir: /tmp/password-store-1.7.1
+    target: install
+
+- name: download Tomb
+  get_url:
+    url: 'https://files.dyne.org/tomb/Tomb-2.4.tar.gz'
+    dest: /tmp/Tomb-2.4.tar.gz
+    checksum: 'sha256:7907775e563290afb56f3aa4b6297f6cf38a2cfafb8c6081c45c1fadd2e161c3'
+
+- name: unarchive
+  unarchive:
+    src: /tmp/Tomb-2.4.tar.gz
+    dest: /tmp
+
+- name: install tomb
+  make:
+    chdir: /tmp/Tomb-2.4
+    target: install
+
+- name: download pass-tomb
+  get_url:
+    url: 'https://github.com/roddhjav/pass-tomb/archive/v1.0.tar.gz'
+    dest: /tmp/pass-tomb-1.0.tar.gz
+    checksum: 'sha256:0e5e3543b444588ed50627ca65b17a0cfe2dec4ec93ce09e43e030be12465920'
+
+- name: unarchive
+  unarchive:
+    src: /tmp/pass-tomb-1.0.tar.gz
+    dest: /tmp
+
+- name: install pass-tomb
+  make:
+    chdir: /tmp/pass-tomb-1.0
+    target: install
