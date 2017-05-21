@@ -46,6 +46,8 @@
     - name: git-core
     - name: gufw
     - name: htop
+    - name: libssl-dev # For python package cryptography
+    - name: pass
     - name: p7zip-full
     - name: p7zip-rar
     - name: screen
@@ -53,3 +55,4 @@
     - name: vcsh
     - name: vim-gtk # For system clipboard
     - name: yadm
+    - name: zsh
