@@ -1,0 +1,28 @@
+---
+
+- name: upgrade packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: install latex packages
+  apt:
+    name: '{{ item.name }}'
+    state: '{{ item.state | default("present") }}'
+    purge: yes
+
+  with_items:
+    - name: fonts-arphic-ukai
+    - name: fonts-arphic-uming
+    - name: fonts-noto
+    - name: fonts-noto-cjk
+    - name: texlive-bibtex-extra
+    - name: texlive-humanities
+    - name: texlive-lang-cjk
+    - name: texlive-latex-extra
+    - name: texlive-latex-recommended
+    - name: texlive-luatex
+    - name: texlive-science
+    - name: texlive-xetex
+    - name: ttf-wqy-microhei
+    - name: ttf-wqy-zenhei
