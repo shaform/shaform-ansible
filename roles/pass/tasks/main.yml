@@ -30,32 +30,32 @@
 
 - name: download Tomb
   get_url:
-    url: 'https://files.dyne.org/tomb/Tomb-2.4.tar.gz'
-    dest: /tmp/Tomb-2.4.tar.gz
-    checksum: 'sha256:7907775e563290afb56f3aa4b6297f6cf38a2cfafb8c6081c45c1fadd2e161c3'
+    url: 'https://files.dyne.org/tomb/Tomb-2.5.tar.gz'
+    dest: /tmp/Tomb-2.5.tar.gz
+    checksum: 'sha256:8c03693cd4aa1fa7eccbad55dec02474750be7b75180b51f1085ab671bc58689'
 
 - name: unarchive
   unarchive:
-    src: /tmp/Tomb-2.4.tar.gz
+    src: /tmp/Tomb-2.5.tar.gz
     dest: /tmp
 
 - name: install tomb
   make:
-    chdir: /tmp/Tomb-2.4
+    chdir: /tmp/Tomb-2.5
     target: install
 
 - name: download pass-tomb
   get_url:
-    url: 'https://github.com/roddhjav/pass-tomb/archive/v1.0.tar.gz'
-    dest: /tmp/pass-tomb-1.0.tar.gz
-    checksum: 'sha256:0e5e3543b444588ed50627ca65b17a0cfe2dec4ec93ce09e43e030be12465920'
+    url: 'https://github.com/roddhjav/pass-tomb/releases/download/v1.1/pass-tomb-1.1.tar.gz'
+    dest: /tmp/pass-tomb-1.1.tar.gz
+    checksum: 'sha256:38fd010e9105b86935d1ae5add5ea4fca9e52feb728169abb4194c73468f8a42'
 
 - name: unarchive
   unarchive:
-    src: /tmp/pass-tomb-1.0.tar.gz
+    src: /tmp/pass-tomb-1.1.tar.gz
     dest: /tmp
 
 - name: install pass-tomb
   make:
-    chdir: /tmp/pass-tomb-1.0
+    chdir: /tmp/pass-tomb-1.1
     target: install

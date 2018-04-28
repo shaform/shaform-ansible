@@ -52,6 +52,6 @@
     - name: screen
     - name: tmux
     - name: vcsh
-    - name: vim-gtk # For system clipboard
+    - name: neovim
     - name: yadm
     - name: zsh

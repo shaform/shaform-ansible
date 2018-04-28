@@ -1,5 +1,5 @@
 ---
 
-- hosts: '{{ hosts }}'
+- hosts: '{{ dest_hosts }}'
   roles:
     - anaconda

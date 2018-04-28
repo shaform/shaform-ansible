@@ -2,7 +2,7 @@
 
 - name: add Java ppa
   apt_repository:
-    repo: 'ppa:webupd8team/java'
+    repo: 'ppa:linuxuprising/java'
 
 - name: install debconf
   apt:
@@ -14,18 +14,7 @@
     - name: debconf-utils
 
 - name: accept license
-  debconf:
-    name: oracle-java9-installer
-    question: shared/accepted-oracle-license-v1-1
-    vtype: select
-    value: true
-
-- name: mark license as seen
-  debconf:
-    name: oracle-java9-installer
-    question: shared/accepted-oracle-license-v1-1
-    vtype: seen
-    value: true
+  shell: echo oracle-java10-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 
 - name: install Java
   apt:
@@ -33,7 +22,6 @@
     state: '{{ item.state | default("present") }}'
 
   with_items:
-    - name: python-software-properties
-    - name: oracle-java9-installer
+    - name: oracle-java10-installer
     - name: ca-certificates
-    - name: oracle-java9-set-default
+    - name: oracle-java10-set-default

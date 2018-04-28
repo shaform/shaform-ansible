@@ -2,16 +2,25 @@
 
 - name: download Anaconda
   get_url:
-    url: 'https://repo.continuum.io/archive/Anaconda2-5.0.0.1-Linux-x86_64.sh'
-    dest: Anaconda2-5.0.0.1-Linux-x86_64.sh
+    url: 'https://repo.anaconda.com/archive/Anaconda3-5.1.0-Linux-x86_64.sh'
+    dest: /tmp/Anaconda3-5.1.0-Linux-x86_64.sh
     mode: '0755'
+  become: false
 
 - name: install Anaconda
-  command: bash /tmp/Anaconda2-5.0.0.1-Linux-x86_64.sh -b -p {{ ansible_env.HOME }}/anaconda2
+  command: bash /tmp/Anaconda3-5.1.0-Linux-x86_64.sh -b -p {{ ansible_env.HOME }}/anaconda3
   args:
-    creates: '{{ ansible_env.HOME}}/anaconda2'
+    creates: '{{ ansible_env.HOME }}/anaconda3'
+  become: false
 
-- name: add Anaconda to PATH
-  lineinfile:
-    name: '{{ ansible_env.HOME }}/.bashrc'
-    line: 'export PATH=$HOME/anaconda2/bin:${PATH}'
+- name: create Python 2 environment
+  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda create -n py27 -y python=2.7 anaconda'
+  args:
+    creates: '{{ ansible_env.HOME }}/anaconda3/envs/python27/bin/python'
+  become: false
+
+- name: create Python 3 environment
+  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda create -n py36 -y python=3.6 anaconda'
+  args:
+    creates: '{{ ansible_env.HOME }}/anaconda3/envs/python36/bin/python'
+  become: false

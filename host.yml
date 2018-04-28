@@ -1,6 +1,6 @@
 ---
 
-- hosts: '{{ hosts }}'
+- hosts: '{{ dest_hosts }}'
   become: true
   become_user: root
   roles:

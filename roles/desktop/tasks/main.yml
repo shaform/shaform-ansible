@@ -1,32 +1,17 @@
 ---
 
-- name: mkdir for configure files
-  file:
-    dest: '{{ item.dest }}'
-    owner: root
-    group: root
-    mode: '{{ item.mode | default("0755") }}'
-    state: directory
+- name: add SafeEyes ppa
+  apt_repository:
+    repo: 'ppa:slgobinath/safeeyes'
+
+- name: install SafeEyes
+  apt:
+    name: '{{ item.name }}'
+    state: '{{ item.state | default("present") }}'
+    update_cache: yes
 
   with_items:
-    - dest: /usr/share/lightdm/lightdm.conf.d
-
-- name: disable guest login
-  copy:
-    dest: '{{ item.dest }}'
-    owner: root
-    group: root
-    mode: '{{ item.mode | default("0644") }}'
-    content: '{{ item.content }}'
-
-  with_items:
-    - dest: /usr/share/lightdm/lightdm.conf.d/50-no-guest.conf
-      mode: '0400'
-      content: |
-        # This file is managed by Ansible. DO NOT EDIT.
-
-        [SeatDefaults]
-        allow-guest=false
+    - name: safeeyes
 
 - name: install desktop apps
   apt:
@@ -40,13 +25,34 @@
     - name: gimp
     - name: gnucash
     - name: ibus-chewing
-    - name: keepassx
-    - name: libappindicator1 # For Dropbox
+    - name: python-gpg # For Dropbox
     - name: nautilus-dropbox
-    - name: python-gpgme # For Dropbox
-    - name: workrave
+    - name: ubuntu-restricted-extras
+    - name: gnome-tweak-tool
+    - name: redshift-gtk
 
 - name: install Google Chrome
   apt:
     deb: 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
     update_cache: yes
+
+
+- name: configure dock
+  shell: |
+    gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+    gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
+  become: false
+
+- name: move window bottons to left
+  shell: gsettings set org.gnome.desktop.wm.preferences button-layout 'close,maximize,minimize:'
+  become: false
+
+- name: enable geoclue for redshift
+  blockinfile:
+    path: /etc/geoclue/geoclue.conf
+    block: |
+      
+      [redshift]
+      allowed=true
+      system=false
+      users=
