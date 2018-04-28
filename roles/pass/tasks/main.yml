@@ -7,9 +7,16 @@
 
   with_items:
     - name: git-core
+    - name: gnupg-agent
+    - name: gnupg2
+    - name: libusb-1.0-0-dev
+    - name: pcscd
+    - name: pinentry-curses
     - name: pwgen
+    - name: scdaemon
     - name: tree
     - name: xclip
+    - name: yubikey-personalization
     - name: zsh
 
 - name: download pass
