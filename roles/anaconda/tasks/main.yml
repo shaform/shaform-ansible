@@ -19,8 +19,16 @@
     creates: '{{ ansible_env.HOME }}/anaconda3/envs/python27/bin/python'
   become: false
 
+- name: install default packages
+  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda install -n py27 neovim flake8 pylint yapf -c conda-forge -y'
+  become: false
+
 - name: create Python 3 environment
   command: '{{ ansible_env.HOME }}/anaconda3/bin/conda create -n py36 -y python=3.6 anaconda'
   args:
     creates: '{{ ansible_env.HOME }}/anaconda3/envs/python36/bin/python'
+  become: false
+
+- name: install default packages
+  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda install -n py36 neovim flake8 pylint yapf -c conda-forge -y'
   become: false
