@@ -18,7 +18,6 @@
     name: '{{ item.name }}'
     state: '{{ item.state | default("present") }}'
     purge: yes
-    update_cache: yes
 
   with_items:
     - name: chromium-browser
@@ -34,13 +33,12 @@
 - name: install Google Chrome
   apt:
     deb: 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
-    update_cache: yes
-
 
 - name: configure dock
   shell: |
     gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
     gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
+    gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
   become: false
 
 - name: move window bottons to left

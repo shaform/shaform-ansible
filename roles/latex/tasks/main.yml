@@ -1,10 +1,5 @@
 ---
 
-- name: upgrade packages
-  apt:
-    upgrade: dist
-    update_cache: yes
-
 - name: install latex packages
   apt:
     name: '{{ item.name }}'
