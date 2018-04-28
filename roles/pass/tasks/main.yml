@@ -1,4 +1,8 @@
 ---
+- name: add Yubico ppa
+  apt_repository:
+    repo: 'ppa:yubico/stable'
+
 - name: install dep
   apt:
     name: '{{ item.name }}'
@@ -16,7 +20,8 @@
     - name: scdaemon
     - name: tree
     - name: xclip
-    - name: yubikey-personalization
+    - name: yubikey-personalization 
+    - name: yubioath-desktop
     - name: zsh
 
 - name: download pass
