@@ -29,6 +29,7 @@
     - name: ubuntu-restricted-extras
     - name: gnome-tweak-tool
     - name: redshift-gtk
+    - name: pinta
 
 - name: install Google Chrome
   apt:
