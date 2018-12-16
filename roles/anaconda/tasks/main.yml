@@ -20,7 +20,7 @@
   become: false
 
 - name: install default packages
-  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda install -n py27 neovim flake8 pylint yapf -c conda-forge -y'
+  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda install -n py27 ipython neovim flake8 yapf -c conda-forge -y'
   become: false
 
 - name: create Python 3 environment
@@ -30,5 +30,5 @@
   become: false
 
 - name: install default packages
-  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda install -n py36 neovim flake8 pylint yapf requests-oauthlib google-api-python-client tqdm scrapy -c conda-forge -y'
+  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda install -n py36 ipython neovim flake8 yapf requests-oauthlib google-api-python-client tqdm scrapy -c conda-forge -y'
   become: false
