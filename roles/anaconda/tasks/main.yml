@@ -2,13 +2,13 @@
 
 - name: download Anaconda
   get_url:
-    url: 'https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh'
-    dest: /tmp/Anaconda3-5.3.1-Linux-x86_64.sh
+    url: 'https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh'
+    dest: /tmp/Anaconda3-2018.12-Linux-x86_64.sh
     mode: '0755'
   become: false
 
 - name: install Anaconda
-  command: bash /tmp/Anaconda3-5.3.1-Linux-x86_64.sh -b -p {{ ansible_env.HOME }}/anaconda3
+  command: bash /tmp/Anaconda3-2018.12-Linux-x86_64.sh -b -p {{ ansible_env.HOME }}/anaconda3
   args:
     creates: '{{ ansible_env.HOME }}/anaconda3'
   become: false
@@ -20,7 +20,7 @@
   become: false
 
 - name: install default packages
-  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda install -n py27 ipython neovim flake8 yapf -c conda-forge -y'
+  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda install -n py27 ipython pynvim flake8 yapf -c conda-forge -y'
   become: false
 
 - name: create Python 3 environment
@@ -30,5 +30,5 @@
   become: false
 
 - name: install default packages
-  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda install -n py36 ipython neovim flake8 yapf requests-oauthlib google-api-python-client tqdm scrapy -c conda-forge -y'
+  command: '{{ ansible_env.HOME }}/anaconda3/bin/conda install -n py36 ipython pynvim flake8 yapf requests-oauthlib google-api-python-client tqdm scrapy -c conda-forge -y'
   become: false
